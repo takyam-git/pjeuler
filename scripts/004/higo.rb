@@ -13,7 +13,7 @@ catch(:exit) {
     throw :exit if n1 * 999 < max
     999.downto(n1){|n2|
       cnt += 1
-      print  "#{n1}, #{n2}, #{n1*n2}\n"
+#      print  "#{n1}, #{n2}, #{n1*n2}\n"
       if check_circuler( n1 * n2 )
         max = n1 * n2
       end
