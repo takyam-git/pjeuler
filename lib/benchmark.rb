@@ -9,6 +9,8 @@ benchmarks_dir = reports_dir + '/benchmarks'
 lib_dir = base_dir + '/lib'
 template_dir = lib_dir + '/templates'
 
+github_scripts_url = 'https://github.com/takyam-git/pjeuler/blob/master/scripts'
+
 #scriptsディレクトリから、数字だけで構成されているディレクトリ名一覧を取得する
 all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9]+$/ }.sort
 
@@ -40,7 +42,7 @@ all_quiz_directories.each {|script_dir_name|
   results.sort!{|a, b| a[:time] <=> b[:time]}
 
   results.each {|result|
-    rows += "<tr><td>#{script_dir_name}</td><td>#{result[:file_name]}</td>"
+    rows += "<tr><td>#{script_dir_name}</td><td><a href=\"#{github_scripts_url}/#{script_dir_name}/#{result[:file_name]}\" target=\"_blank\">#{result[:file_name]}</a></td>"
     if result[:status] == 0
       rows += "<td>#{"%.2f" % ((result[:time] * 100000).ceil().to_f / 100)}</td><td>#{result[:stdout].to_s.chomp.gsub(/\r\n|\r|\n/, '<br>')}</td>"
     else
