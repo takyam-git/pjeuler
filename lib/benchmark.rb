@@ -33,7 +33,7 @@ all_quiz_directories.each {|script_dir_name|
     stdout = ''
     status = 0
     tms = Benchmark::measure{
-      stdout = `timeout -s 9 3 ruby #{file_path}`
+      stdout = `timeout -s 9 10 ruby #{file_path}`
       status = $?.to_i
     }
     results.push({:file_name => file_name, :time => tms.real, :stdout => stdout, :status => status})
