@@ -42,7 +42,7 @@ all_quiz_directories.each {|script_dir_name|
   results.each {|result|
     rows += "<tr><td>#{script_dir_name}</td><td>#{result[:file_name]}</td>"
     if result[:status] == 0
-      rows += "<td>#{(result[:time] * 100000).ceil().to_f / 100}</td><td>#{result[:stdout].to_s.chomp.gsub(/\r\n|\r|\n/, '<br>')}</td>"
+      rows += "<td>#{"%.2f" % ((result[:time] * 100000).ceil().to_f / 100)}</td><td>#{result[:stdout].to_s.chomp.gsub(/\r\n|\r|\n/, '<br>')}</td>"
     else
       rows += "<td colspan=\"2\">スクリプト実行に失敗しました</td>"
     end
