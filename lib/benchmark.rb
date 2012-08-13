@@ -10,13 +10,13 @@ lib_dir = base_dir + '/lib'
 template_dir = lib_dir + '/templates'
 
 #scriptsディレクトリから、数字だけで構成されているディレクトリ名一覧を取得する
-all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9]+$/ }
+all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9]+$/ }.sort
 
 rows = ''
 all_quiz_directories.each {|script_dir_name|
   #scripts/0xx ディレクトリから、先頭が.（ドット）で始まらないRubyファイル一覧を取得する
   dir_path = scripts_dir + '/' + script_dir_name
-  all_script_files = Dir::entries(dir_path).select{|file_name| file_name =~ /^[^.]+\.rb$/}
+  all_script_files = Dir::entries(dir_path).select{|file_name| file_name =~ /^[^.]+\.rb$/}.sort
   all_script_files.each {|file_name|
     file_path = dir_path + '/' + file_name
     stdout = ''
