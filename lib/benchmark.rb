@@ -24,6 +24,7 @@ all_quiz_directories.each {|script_dir_name|
   all_script_files = Dir::entries(dir_path).select{|file_name| file_name =~ /^[^.]+\.rb$/}.sort
   rows = ''
   current_dir_name = script_dir_name
+  results = []
   all_script_files.each {|file_name|
     file_path = dir_path + '/' + file_name
     stdout = ''
@@ -32,10 +33,16 @@ all_quiz_directories.each {|script_dir_name|
       stdout = `ruby #{file_path}`
       status = $?.to_i
     }
+    results.push({:file_name => file_name, :time => result.real, :stdout => stdout, :status => status})
+  }
 
-    rows += "<tr><td>#{script_dir_name}</td><td>#{file_name}</td>"
-    if status == 0
-      rows += "<td>#{(result.real * 100000).ceil().to_f / 100}</td><td>#{stdout.to_s.chomp.gsub(/\r\n|\r|\n/, '<br>')}</td>"
+  # 実行タイムでソート
+  results.sort!{|a, b| a[:time] <=> b[:time]}
+
+  results.each {|result|
+    rows += "<tr><td>#{script_dir_name}</td><td>#{result[:file_name]}</td>"
+    if result[:status] == 0
+      rows += "<td>#{(result[:time] * 100000).ceil().to_f / 100}</td><td>#{result[:stdout].to_s.chomp.gsub(/\r\n|\r|\n/, '<br>')}</td>"
     else
       rows += "<td colspan=\"2\">スクリプト実行に失敗しました</td>"
     end
