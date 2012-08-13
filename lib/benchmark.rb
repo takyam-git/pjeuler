@@ -42,6 +42,6 @@ layout = ERB.new(File.read(template_dir + '/layout.erb'))
 content = ERB.new(File.read(template_dir + '/report.erb')).result
 File.write(benchmarks_dir + '/benchmark_' + Time.now.strftime('%Y%m%d_%H%M%S') + '.html', layout.result)
 
-reports = Dir::entries(benchmarks_dir).select{|file_name| file_name =~ /benchmark_.+\.html$/}.reverse
+reports = Dir::entries(benchmarks_dir).select{|file_name| file_name =~ /benchmark_.+\.html$/}.sort.reverse
 content = ERB.new(File.read(template_dir + '/reports.erb')).result
 File.write(reports_dir + '/index.html', layout.result)
