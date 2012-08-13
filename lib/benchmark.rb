@@ -12,11 +12,18 @@ template_dir = lib_dir + '/templates'
 #scriptsディレクトリから、数字だけで構成されているディレクトリ名一覧を取得する
 all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9]+$/ }.sort
 
+#inits
+title = Time.now.strftime('%Y/%m/%d %H:%M:%S')
+content = "<h1>#{title}</h1>"
+current_dir_name = ''
 rows = ''
+
 all_quiz_directories.each {|script_dir_name|
   #scripts/0xx ディレクトリから、先頭が.（ドット）で始まらないRubyファイル一覧を取得する
   dir_path = scripts_dir + '/' + script_dir_name
   all_script_files = Dir::entries(dir_path).select{|file_name| file_name =~ /^[^.]+\.rb$/}.sort
+  rows = ''
+  current_dir_name = script_dir_name
   all_script_files.each {|file_name|
     file_path = dir_path + '/' + file_name
     stdout = ''
@@ -34,12 +41,10 @@ all_quiz_directories.each {|script_dir_name|
     end
     rows += "</tr>"
   }
+  content += ERB.new(File.read(template_dir + '/report.erb')).result
 }
 
-#puts rows
-title = Time.now.strftime('%Y/%m/%d %H:%M:%S')
 layout = ERB.new(File.read(template_dir + '/layout.erb'))
-content = ERB.new(File.read(template_dir + '/report.erb')).result
 File.write(benchmarks_dir + '/benchmark_' + Time.now.strftime('%Y%m%d_%H%M%S') + '.html', layout.result)
 
 reports = Dir::entries(benchmarks_dir).select{|file_name| file_name =~ /benchmark_.+\.html$/}.sort.reverse
