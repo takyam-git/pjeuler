@@ -1,23 +1,29 @@
-# 13195 の素因数は 5、7、13、29 である。
-# 600851475143 の素因数のうち最大のものを求めよ。
-
-# 素因数分解
+def prime?(num, ary)
+  ary.each do |n|
+    break if n * n  > num
+    return false if num % n == 0
+  end
+  return true
+end
 def factorization (num)
   factor = []
-  # 素数を生成して順に割っていく
-  (2..num).each do |prime|
-    if !(2..Math.sqrt(prime)).any?{|n| prime % n == 0}
-      # 素数で割り切れたら追加
+  prime_ary = [2, 3, 5]
+  n = 0
+  while  prime_ary.count < num
+    n += 1
+    prime = 6 * n + 1
+    if prime?(prime, prime_ary)
+      prime_ary.push(prime)
       factor << prime if num % prime == 0
-      # 割り切れた素数の積が元の数に等しいなら終了
-      if factor.inject(&:*)  == num
-        break
-      end
+      break if factor.inject(&:*)  == num
+    end
+    prime += 4
+    if prime?(prime, prime_ary)
+      prime_ary.push(prime)
+      factor << prime if num % prime == 0
+      break if factor.inject(&:*)  == num
     end
   end
   return factor
 end
-# p factorization(13195) # => [5, 7, 13, 29]
-# p factorization(600851475143)
-p factorization(13195).max # => 29
 p factorization(600851475143).max
