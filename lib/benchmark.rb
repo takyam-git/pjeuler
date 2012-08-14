@@ -57,7 +57,7 @@ all_quiz_directories.each {|script_dir_name|
   description = ''
   description_path = dir_path + '/description.txt'
   if File.exists?(description_path)
-    description =  ERB::Util.html_escape(File.read(description_path).gsub(/\r\n|\r|\n/, '<br>'))
+    description =  ERB::Util.html_escape(File.read(description_path).to_s.chomp.gsub(/\r\n|\r|\n/, '<br>'))
   end
 
   content += ERB.new(File.read(template_dir + '/report.erb')).result
