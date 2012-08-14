@@ -1,8 +1,6 @@
 start = Time.now
 def check_circuler(num)
-  ary     = num.to_s.split(//)
-  rev_ary = ary.reverse
-  ary == rev_ary ? true : false
+  num.to_s == num.to_s.reverse ? true : false
 end
 
 cnt = 0
@@ -20,6 +18,6 @@ catch(:exit) {
     }
   }
 }
-p cnt
-p max 
-p ((Time.now - start) * 1000).round
+p max
+p "loop count:" + cnt.to_s
+p "took " + ((Time.now - start) * 1000).round.to_s + "ms"
