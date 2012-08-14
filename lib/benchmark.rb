@@ -9,45 +9,57 @@ benchmarks_dir = reports_dir + '/benchmarks'
 lib_dir = base_dir + '/lib'
 template_dir = lib_dir + '/templates'
 
-#scriptsディレクトリから、数字だけで構成されているディレクトリ名一覧を取得する
-all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9]+$/ }.sort
+github_scripts_url = 'https://github.com/takyam-git/pjeuler/blob/master/scripts'
 
-#inits
+#scriptsディレクトリから、数字だけで構成されているディレクトリ名一覧を取得する
+all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9]+$/ }.sort.reverse
+
+#inits erbのBinding用
 title = Time.now.strftime('%Y/%m/%d %H:%M:%S')
 content = "<h1>#{title}</h1>"
 current_dir_name = ''
 rows = ''
+result = {}
+num = 0
+description = ''
+number = 0
 
 all_quiz_directories.each {|script_dir_name|
+  number += 1
   #scripts/0xx ディレクトリから、先頭が.（ドット）で始まらないRubyファイル一覧を取得する
   dir_path = scripts_dir + '/' + script_dir_name
   all_script_files = Dir::entries(dir_path).select{|file_name| file_name =~ /^[^.]+\.rb$/}.sort
-  rows = ''
-  current_dir_name = script_dir_name
+
   results = []
   all_script_files.each {|file_name|
     file_path = dir_path + '/' + file_name
     stdout = ''
     status = 0
-    result = Benchmark::measure{
-      stdout = `ruby #{file_path}`
+    tms = Benchmark::measure{
+      stdout = `timeout -s 9 60 ruby #{file_path}`
       status = $?.to_i
     }
-    results.push({:file_name => file_name, :time => result.real, :stdout => stdout, :status => status})
+    results.push({:file_name => file_name, :time => tms.real, :stdout =>  ERB::Util.html_escape(stdout), :status => status})
   }
 
   # 実行タイムでソート
   results.sort!{|a, b| a[:time] <=> b[:time]}
 
-  results.each {|result|
-    rows += "<tr><td>#{script_dir_name}</td><td>#{result[:file_name]}</td>"
-    if result[:status] == 0
-      rows += "<td>#{"%.2f" % ((result[:time] * 100000).ceil().to_f / 100)}</td><td>#{result[:stdout].to_s.chomp.gsub(/\r\n|\r|\n/, '<br>')}</td>"
-    else
-      rows += "<td colspan=\"2\">スクリプト実行に失敗しました</td>"
-    end
-    rows += "</tr>"
+  rows = ''
+  current_dir_name =  ERB::Util.html_escape(script_dir_name)
+  num = 0
+  results.each {|res|
+    result = res
+    num += 1
+    rows += ERB.new(File.read(template_dir + '/row.erb')).result
   }
+
+  description = ''
+  description_path = dir_path + '/description.txt'
+  if File.exists?(description_path)
+    description =  ERB::Util.html_escape(File.read(description_path, :encoding => 'UTF-8').to_s.chomp.gsub(/\r\n|\r|\n/, '<br>'))
+  end
+
   content += ERB.new(File.read(template_dir + '/report.erb')).result
 }
 

@@ -8,13 +8,16 @@
 max = 0
 total = 0
 
-100.upto(999) { |i|
-    100.upto(999) { |j|
+999.downto(100) { |i|
+    999.downto(100) { |j|
+        # break 入れてみた
+        if max >= i * j
+            break
+        end
         total = i * j
         if max < total && total.to_s == total.to_s.reverse
             max = total
         end 
     }
 }
-
 puts max

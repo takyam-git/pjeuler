@@ -1,5 +1,4 @@
 # encoding: utf-8
-start = Time.now
 min = 100
 max = 999
 max_palindrome = 0
@@ -29,4 +28,3 @@ catch(:finish){
   }
 }
 p max_palindrome #=> 906609
-p ((Time.now - start) * 1000).round #=> 80ms前後

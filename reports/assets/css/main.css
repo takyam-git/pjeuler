@@ -1,0 +1,4 @@
+.cell_rank {width: 50px;}
+.cell_filename {width: 150px;}
+.cell_runtime {width: 100px;}
+td.cell_runtime {text-align: right;}

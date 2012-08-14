@@ -1,0 +1,14 @@
+<tr>
+  <td class="cell_rank"><%= num %></td>
+  <td class="cell_filename">
+    <a href="<%=github_scripts_url%>/<%= current_dir_name%>/<%=result[:file_name]%>" target="_blank">
+      <%=result[:file_name] %>
+    </a>
+  </td>
+  <% if result[:status] == 0 %>
+    <td class="cell_runtime"><%= "%.2f" % ((result[:time] * 100000).ceil().to_f / 100) %></td>
+    <td class="cell_stdout"><%= result[:stdout].to_s.chomp.gsub(/\r\n|\r|\n/, '<br>') %></td>
+  <% else %>
+    <td class="cell_failed" colspan="2">スクリプト実行に失敗しました。3秒以上実行に時間がかかってる可能性があります。</td>
+  <% end %>
+</tr>
