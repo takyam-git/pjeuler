@@ -21,8 +21,11 @@ current_dir_name = ''
 rows = ''
 result = {}
 num = 0
+description = ''
+number = 0
 
 all_quiz_directories.each {|script_dir_name|
+  number += 1
   #scripts/0xx ディレクトリから、先頭が.（ドット）で始まらないRubyファイル一覧を取得する
   dir_path = scripts_dir + '/' + script_dir_name
   all_script_files = Dir::entries(dir_path).select{|file_name| file_name =~ /^[^.]+\.rb$/}.sort
@@ -36,20 +39,27 @@ all_quiz_directories.each {|script_dir_name|
       stdout = `timeout -s 9 60 ruby #{file_path}`
       status = $?.to_i
     }
-    results.push({:file_name => file_name, :time => tms.real, :stdout => stdout, :status => status})
+    results.push({:file_name => file_name, :time => tms.real, :stdout =>  ERB::Util.html_escape(stdout), :status => status})
   }
 
   # 実行タイムでソート
   results.sort!{|a, b| a[:time] <=> b[:time]}
 
   rows = ''
-  current_dir_name = script_dir_name
+  current_dir_name =  ERB::Util.html_escape(script_dir_name)
   num = 0
   results.each {|res|
     result = res
     num += 1
     rows += ERB.new(File.read(template_dir + '/row.erb')).result
   }
+
+  description = ''
+  description_path = dir_path + '/description.txt'
+  if File.exists?(description_path)
+    description =  ERB::Util.html_escape(File.read(description_path).gsub(/\r\n|\r|\n/, '<br>'))
+  end
+
   content += ERB.new(File.read(template_dir + '/report.erb')).result
 }
 

@@ -1,4 +1,12 @@
-<h2><%= current_dir_name %></h2>
+<h2>
+  <% if description == '' %>
+    <%= current_dir_name %>
+  <% else %>
+    <a href="#" class="title_link" data-content="<%= description %>" title="<%=current_dir_name %>">
+      <%= current_dir_name %>
+    </a>
+  <% end %>
+</h2>
 <table class="table table-striped table-bordered table-condensed">
   <thead>
   <tr>
