@@ -1,6 +1,11 @@
-# ./scripts ディレクトリ以下に問題番号のファイルを作成して、その中に自分の名前の .rb ファイルを作ってください
+#使い方
+
+./scripts ディレクトリ以下に問題番号のディレクトリを作成して、その中に自分の名前の .rb ファイルを作ってください
+
+性善説に基いて運用しているので、無限ループとか、糞処理に時間かかるとか、
+exec とか `` で悪いことするとか、そういうのは止めてくださいｗ
 
 * 結果
-** http://pjeuler.com/
+ * http://pjeuler.com/
 * Jenkins
-** http://jenkins.pjeuler.com/
+ * http://jenkins.pjeuler.com/
