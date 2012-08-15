@@ -11,8 +11,9 @@ template_dir = lib_dir + '/templates'
 
 github_scripts_url = 'https://github.com/takyam-git/pjeuler/blob/master/scripts'
 
-#scriptsディレクトリから、数字だけで構成されているディレクトリ名一覧を取得する
-all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9]+$/ }.sort.reverse
+#scriptsディレクトリからディレクトリ名一覧を取得する
+#CodeIQ\d\d\d可
+all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^(CodeIQ_)?[0-9]+$/ }.sort.reverse
 
 #inits erbのBinding用
 title = Time.now.strftime('%Y/%m/%d %H:%M:%S')
