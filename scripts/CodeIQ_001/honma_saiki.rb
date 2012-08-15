@@ -1,5 +1,6 @@
 # 1~9の数字を使った3桁割る3桁の分数のうち1/2よりも小さくなるものの総数は全体の何％か？
 # 再帰
+t = Time.now
 numbers = (1..9).to_a
 @all_count = 0
 @half_count = 0
@@ -13,8 +14,9 @@ def generate_list(need_num, selected_list, num_list)
     return
   end
   num_list.each do |n|
-    generate_list(need_num - 1, selected_list + [n], num_list.select{|m|n != m})
+    generate_list(need_num - 1, selected_list + [n], num_list.reject{|m|n == m})
   end
 end
 generate_list(6, [], numbers)
 print "%.2f" % ((@half_count / @all_count.to_f) * 100), "%\n"
+p Time.now - t
