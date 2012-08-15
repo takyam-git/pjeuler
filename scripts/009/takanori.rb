@@ -17,5 +17,8 @@ total = 0
             break
         end
     }
+    if total > 0
+        break
+    end
 }
 puts total
