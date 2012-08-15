@@ -13,9 +13,10 @@
 # c < sqrt(2) * b
 # b > c / sqrt(2)
 #
+# a + b > c で c < 500?を使ってみる
 t = Time.now
 catch(:finish) {
-  998.downto(1000 / 3.0){|c|
+  499.downto(1000 / 3.0){|c|
     (1000 - c - 1).downto(c / Math.sqrt(2)){|b|
       # c とbが決まればaは一意に決まる
       a = 1000 - b - c
