@@ -31,9 +31,6 @@ p numbers.unshift(2).inject(0){|sum,number|
   sum
 }
 
-exit
-
-
 #ライブラリ利用バージョン
 #start = Time.now
 #require('prime')
