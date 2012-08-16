@@ -18,6 +18,3 @@ end
 #As a class method
 p OutputClass.calc(1000)
 
-#As a instance method
-o = OutputClass.new
-p o.calc(1000)

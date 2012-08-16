@@ -53,15 +53,17 @@ half = (pita/2).to_i
 
 #mの最大値+αは1000の半分の平方根以下
 r = Math::sqrt(half).ceil.to_i
-r.downto(1){|m|
-  (m-1).downto(1){|n|
-    next if !m.even? and !n.even?
-    mm = m * m
-    if mm + m*n == half
-      nn = n * n
-      p (mm-nn)*(2*m*n)*(mm+nn)
-      exit
-    end
+catch(:fin) do
+  r.downto(1){|m|
+    (m-1).downto(1){|n|
+      next if !m.even? and !n.even?
+      mm = m * m
+      if mm + m*n == half
+        nn = n * n
+        p (mm-nn)*(2*m*n)*(mm+nn)
+        throw :fin
+      end
+    }
   }
-}
+end
 p 'not found'

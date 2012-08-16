@@ -20,7 +20,6 @@ while i += 1
   end
 end
 p i
-exit
 
 #### Wikipediaのコード利用パターン
 #class Integer

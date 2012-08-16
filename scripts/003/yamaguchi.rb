@@ -18,5 +18,12 @@ input = 600851475143
 #  end
 #}
 
-Math::sqrt(input).to_i.downto(2){|num|catch(:next){2.upto((num / 2).to_i){|i| throw :next if num % i == 0 }; p num;
-exit } if input % num == 0 }
+catch(:fin) {
+  Math::sqrt(input).to_i.downto(2){|num|
+    catch(:next){
+      2.upto((num / 2).to_i) {|i| throw :next if num % i == 0 }
+      p num
+      throw :fin
+    } if input % num == 0
+  }
+}
