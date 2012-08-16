@@ -29,7 +29,7 @@ def factorial_hash(num)
   divisor = divisor_pre.shift # start from 2
   divided = num.to_i
   # 平方根まで調べればOK。その代わりに最後にdividedをカウント
-  while ( divisor <= Math.sqrt(divided) ) do
+  while ( divisor ** 2 <= divided ) do
     $loop_cnt += 1
     if (divided % divisor) == 0 then
       factors[divisor] += 1
