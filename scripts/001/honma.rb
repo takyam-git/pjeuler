@@ -1,5 +1,4 @@
-#!/usr/bin/env ruby
-def sum_select_inject (max, num1, num2)
-  return (1..(max - 1)).select {|n|n % num1 == 0 || n % num2 == 0}.inject(&:+)
-end
-p sum_select_inject(1000, 3, 5)
+# p (1..999).select {|n|n % 3 == 0 || n % 5 == 0}.inject(&:+)
+total = 0
+(1..999).each{|n|total += n if n % 3 == 0 || n % 5 == 0}
+p total
