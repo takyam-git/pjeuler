@@ -14,7 +14,7 @@
 # b > c / sqrt(2)
 #
 # a + b > c で c < 500?を使ってみる
-t = Time.now
+# t = Time.now
 catch(:finish) {
   499.downto(1000 / 3.0){|c|
     (1000 - c - 1).downto(c / Math.sqrt(2)){|b|
@@ -22,11 +22,10 @@ catch(:finish) {
       a = 1000 - b - c
       break if a >= b
       if a*a + b*b == c*c
-        p a, b, c
         p a * b * c
         throw :finish
       end
     }
   }
 }
-p Time.now - t
+# p Time.now - t
