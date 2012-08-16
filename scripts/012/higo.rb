@@ -15,14 +15,11 @@ idx = 1
 $loop_cnt = 0
 
 ## 素数の候補を返す。30で割った余りが以下のものが素数の候補
-@pc = [1, 7, 11, 13, 17, 19, 23, 29]
+@pc = [1, 7, 11, 13, 17, 19, 23, 29, \
+       31] #←繰り上がり対応用
 def next_prime_candidate(now)
-  divmod = now.divmod(30)
-  if ( idx = @pc.index(divmod[1]) + 1 ) == @pc.size 
-    then return 30 * ( divmod[0] + 1) + @pc[0]
-    else return 30 * divmod[0] + @pc[idx]
-  end
-  30 * divmod[0] + @pc[ @pc.index(divmod[1]) ]
+  mod = now % 30
+  now - mod + @pc[ @pc.index(mod) + 1 ]
 end
 ## 素因数分解したhashを返す
 def factorial_hash(num)
@@ -31,7 +28,8 @@ def factorial_hash(num)
   divisor_pre = [ 2, 3, 5, 7 ]
   divisor = divisor_pre.shift # start from 2
   divided = num.to_i
-  while ( divisor <= divided ) do
+  # 平方根まで調べればOK。その代わりに最後にdividedをカウント
+  while ( divisor <= Math.sqrt(divided) ) do
     $loop_cnt += 1
     if (divided % divisor) == 0 then
       factors[divisor] += 1
@@ -42,6 +40,7 @@ def factorial_hash(num)
             ? next_prime_candidate(divisor) \
             : divisor_pre.shift
   end
+  factors[divided] += 1
   return factors
 end
 
