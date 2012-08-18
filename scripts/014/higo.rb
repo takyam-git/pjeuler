@@ -35,7 +35,7 @@ end
 max_index  = 0
 (1..1_000_000).each{|n| max_index = n if @a[n] > @a[max_index] }
 p max_index
-puts "max_index(under 1m): " + max_index.to_s + " 長さ: " + @a[max_index].to_s
+#puts "max_index(under 1m): " + max_index.to_s + " 長さ: " + @a[max_index].to_s
 
 # 以下は@a全体
 #puts "max_index: " + @a.inject(0){|max,(k,v)| max < k ? k : max }.to_s
