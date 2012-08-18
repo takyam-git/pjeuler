@@ -1,4 +1,4 @@
-require 'mathn'
+# require 'mathn'
 
 @target = 0
 @factor_hash = Hash.new(0)
@@ -66,7 +66,7 @@ def divisor_num(factor_hash)
   return product
 end
 
-t = Time.now
+# t = Time.now
 # 三角数の行列の法則
 triangul = 1
 diff = 2
@@ -78,4 +78,4 @@ while true
   break if divisor_num(factorise(triangul)) >= 501
 end
 p triangul
-p Time.now - t
+# p Time.now - t
