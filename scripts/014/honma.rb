@@ -9,9 +9,10 @@
 # さて、100万未満の数字の中でどの数字からはじめれば一番長い数列を生成するか。
 # 注意: 数列の途中で100万以上になってもよい
 # require "pp"
-# t = Time.now
+t = Time.now
 @answer = 0
 @max = 0
+# { はじめの数 => 続く数列の数}を覚えておいて無駄な計算をはぶく
 @collatz = Hash.new(1)
 def collatz_seriese (n)
   seriese = n
@@ -38,4 +39,4 @@ end
 end
 # pp @collatz
 p @answer
-# p Time.now  - t
+p Time.now  - t
