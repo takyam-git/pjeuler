@@ -2,7 +2,10 @@
 # 2 × 2 のマス目の左上からスタートした場合、引き返しなしで右下にいくルートは 6 つある。
 # では、20 × 20 のマス目ではいくつのルートがあるか。
 num = 20
-def fact(n)
-  (1..n).inject(&:*)
+# Ruby風にした
+class Integer
+  def !
+    (1..self).inject(&:*)
+  end
 end
-p fact(num * 2)/(fact(num)** 2)
+p((num * 2).!/(num.!** 2))
