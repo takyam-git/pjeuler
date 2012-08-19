@@ -16,7 +16,6 @@ def kaibun()
   result = 0
   flag = 0
   max = 0
-  p check('891190')
   999.downto(100){ |n1|
     999.downto(100){ |n2|
       result = n1*n2
