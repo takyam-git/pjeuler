@@ -31,4 +31,3 @@ def search (list, position)
 end
 search([75], [0, 0])
 p @route.map{|n|n.inject(&:+)}.max
-
