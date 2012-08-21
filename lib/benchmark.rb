@@ -15,7 +15,7 @@ github_scripts_url = 'https://github.com/takyam-git/pjeuler/blob/master/scripts'
 
 #scriptsディレクトリからディレクトリ名一覧を取得する
 #CodeIQ\d\d\d可
-all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9a-zA-Z-_]+$/ }.sort.reverse
+all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9a-zA-Z\-_]+$/ }.sort.reverse
 
 #inits erbのBinding用
 title = Time.now.strftime('%Y/%m/%d %H:%M:%S')
@@ -25,7 +25,6 @@ rows = ''
 result = {}
 num = 0
 description = ''
-number = 0
 
 def capture_stdout
   out = StringIO.new
@@ -37,7 +36,6 @@ ensure
 end
 
 all_quiz_directories.each {|script_dir_name|
-  number += 1
   #scripts/0xx ディレクトリから、先頭が.（ドット）で始まらないRubyファイル一覧を取得する
   dir_path = scripts_dir + '/' + script_dir_name
   all_script_files = Dir::entries(dir_path).select{|file_name| file_name =~ /^[^.]+\.rb$/}.sort
