@@ -15,7 +15,7 @@ github_scripts_url = 'https://github.com/takyam-git/pjeuler/blob/master/scripts'
 
 #scriptsディレクトリからディレクトリ名一覧を取得する
 #CodeIQ\d\d\d可
-all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9a-zA-Z-_]+$/ }.sort.reverse
+all_quiz_directories = Dir::entries(scripts_dir).select{|dir_name| dir_name =~ /^[0-9a-zA-Z\-_]+$/ }.sort.reverse
 
 #inits erbのBinding用
 title = Time.now.strftime('%Y/%m/%d %H:%M:%S')
