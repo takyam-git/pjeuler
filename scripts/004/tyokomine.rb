@@ -16,8 +16,8 @@ def kaibun()
   result = 0
   flag = 0
   max = 0
-  999.downto(100){ |n1|
-    999.downto(100){ |n2|
+  999.downto(900){ |n1|
+    999.downto(900){ |n2|
       result = n1*n2
       if check(result.to_s)
          if(max < result)
