@@ -1,3 +1,12 @@
+#!/usr/bin/env ruby
+# encoding : utf-8
+# Problem 18  †
+# 以下の三角形の頂点から下まで移動するとき、その数値の合計の最大値は23になる。
+# 37 4
+# 2 4 6
+# 8 5 9 3
+# この例では 3 + 7 + 4 + 9 = 23
+# 以下の三角形を頂点から下まで移動するとき、その最大の合計値を求めよ。
 data =<<Data
 75
 95 64
@@ -15,19 +24,15 @@ data =<<Data
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
 Data
-@ary = data.split(/\n/).map{|n|n.split(/ /).map(&:to_i)}
-@route = []
-# 再帰で辿る
-def search (list, position)
-  if @ary.length == (position[0] + 1)
-    @route << list
-    list = []
-    position = [0, 0]
-    return
+# 注: ここではたかだか 16384 通りのルートしかないので、すべてのパターンを試すこともできる。Problem 67 は同じ問題だが100行あるので、総当りでは解けない。もっと賢い方法が必要である。
+t = Time.now
+@ary = data.split(/\n/).map{|n| n.split(/ /).map(&:to_i)}
+(@ary.length - 2).downto(0) do |j|
+  @ary[j].each_index do |i|
+    @ary[j][i] += @ary[j + 1][i..(i+1)].max
   end
-  (position[1]..(position[1]+1)).each do |m|
-    search(list + [@ary[position[0] + 1][m]], [position[0] + 1, m])
-  end
+  @ary.pop
+  # @ary.map{|row|p row}
 end
-search([75], [0, 0])
-p @route.map{|n|n.inject(&:+)}.max
+p @ary[0][0]
+p Time.now - t
