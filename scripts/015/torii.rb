@@ -3,7 +3,4 @@
 
 # 40 C 20
 
-a = 40; b = 20
-x = []
-b.times {|i| x << (a - i)}
-p x.inject(&:*) / (1..b).inject(&:*)
+p (21..40).inject(&:*) / (1..20).inject(&:*)
