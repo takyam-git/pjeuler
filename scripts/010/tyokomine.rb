@@ -1,10 +1,24 @@
 # encoding:utf-8
-require 'mathn'
+require 'prime'
 
-sum=0
-for i in 1..2_000_000
-  if i.prime?
-    sum += i
+sum=2+3+5
+max = 2_000_000
+for i in 1..max/6
+  prime = i*6+1
+  if prime > max
+    break
+  end
+  if prime.prime?
+    sum += prime
+  end
+
+  prime += 4
+  if prime > max
+    break
+  end
+
+  if prime.prime?
+    sum += prime
   end
 end
 p sum
