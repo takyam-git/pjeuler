@@ -12,5 +12,5 @@ names.each_with_index{|name, idx|
   total += (sum * (idx + 1))
 }
 
-echo File.dirname(File.expand_path(__FILE__))
+p File.dirname(File.expand_path(__FILE__))
 p total
