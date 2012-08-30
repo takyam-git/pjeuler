@@ -26,7 +26,7 @@ cnt = 3
 while true
   f = a[0] + a[1]
   cnt += 1
-  break if f > num
+  break if f >= num
   a = [a[1], f]
 end
 p cnt
