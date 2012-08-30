@@ -3,11 +3,11 @@ data = <<-"EOD"
 EOD
 #start = Time.now
 
-names = data.split(/,/).sort!
+names = data.chomp.split(/,/).sort!
 score = 0
 names.each_index do |i|
   s = 0
-  names[i].each_byte{|c|s += c - 64 if c != '"'}
+  names[i].each_byte{|c|s += ( c - 64 ) if c != 34}
   score += s * (i + 1)
 end
 p score
