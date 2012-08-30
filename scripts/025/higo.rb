@@ -9,7 +9,7 @@ while f < 10 ** 999
   f = f2 + f1
   i += 1
 end
-p f
+#p f
 p i
 
 exit;
