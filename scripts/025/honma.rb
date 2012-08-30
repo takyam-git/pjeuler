@@ -1,23 +1,22 @@
 #!/usr/bin/env ruby
 # coding : utf-8
 
-t = Time.now
-
+# t = Time.now
 max = 10 ** 999
-p (0..1/0.0).inject([1, 1]){|fib, i|
-  fib << fib[i] + fib[i + 1]
-  break fib if fib[-1] > max
-  fib
-}.count
+# p (0..1/0.0).inject([1, 1]){|fib, i|
+#   fib << fib[i] + fib[i + 1]
+#   break fib if fib[-1] > max
+#   fib
+# }.count
 
 # while を使ってもあんまり変わらない
-# a , b = 1, 1
-# count = 2
-# while b.to_s.length < 1000
-#   count += 1
-#   a , b = b , a + b
-# end
-# p count
+a , b = 1, 1
+count = 2
+while b < max
+  count += 1
+  a , b = b , a + b
+end
+p count
 
 # 一般項を使うぜ
 # n = 1
@@ -28,5 +27,4 @@ p (0..1/0.0).inject([1, 1]){|fib, i|
 #   n += 1
 # end
 # p n
-
-p Time.now - t
+# p Time.now - t
