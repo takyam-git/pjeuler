@@ -11,4 +11,6 @@ names.each_with_index{|name, idx|
   sum = name_ary.inject(0){|s,n| s += alpha[n]}
   total += (sum * (idx + 1))
 }
+
+p File.dirname(File.expand_path(__FILE__))
 p total
