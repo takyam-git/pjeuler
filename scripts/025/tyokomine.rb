@@ -16,7 +16,7 @@
 f1 = 1
 f2 = 2
 f3 = 0
-cnt = 3
+cnt = 4
 loop do
   f3 = f2 + f1 
   break if f3 >= 10 ** 999
