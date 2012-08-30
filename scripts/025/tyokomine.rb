@@ -14,14 +14,14 @@
 #p fib.size
 
 f1 = 1
-f2 = 1
+f2 = 2
 f3 = 0
-cnt = 2
+cnt = 3
 loop do
   f3 = f2 + f1 
-  cnt +=1
-  break if f3.to_s.size >= 1000
+  break if f3 >= 10 ** 999
   f1 = f2
   f2 = f3
+  cnt += 1
 end
 p cnt
