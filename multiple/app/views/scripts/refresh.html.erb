@@ -1,0 +1,17 @@
+<ul class="breadcrumb">
+  <li><a href="/">問題一覧</a> <span class="divider">/</span></li>
+  <li class="active">コミットしたスクリプトを登録する</li>
+</ul>
+<% if @new_scripts.size > 0 %>
+    <h1>以下のスクリプトを登録しました</h1>
+    <% @new_scripts.each do |key, scripts| %>
+        <h2><%= key %></h2>
+        <ul>
+          <% scripts.each do |script| %>
+            <li><%= script %></li>
+          <% end %>
+        </ul>
+    <% end %>
+<% else %>
+    <h1>新しく登録されたスクリプトはありません</h1>
+<% end %>

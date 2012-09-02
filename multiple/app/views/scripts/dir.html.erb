@@ -1,0 +1,31 @@
+<ul class="breadcrumb">
+  <li><a href="/">問題一覧</a> <span class="divider">/</span></li>
+  <li class="active"><%= @dir %></li>
+</ul>
+<h1><%= @dir %></h1>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Recent score</th>
+      <th>Console</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @scripts.each do |script| %>
+      <tr>
+        <td><%= script.file %></td>
+        <td><%= '%0.2f' % script.recent %></td>
+        <td>
+          <%= link_to '/' + script.id.to_s, :class => 'btn btn-mini btn-primary' do %>
+            <i class="icon-file"></i> 詳細を見る
+          <% end %>
+          <%= link_to "/run/#{script.id}/#{@dir}" , :class => 'btn btn-mini btn-danger' do %>
+              <i class="icon-file"></i> 再度実行する
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Back', '/' %>

@@ -1,0 +1,34 @@
+<ul class="breadcrumb">
+  <li><a href="/">問題一覧</a> <span class="divider">/</span></li>
+  <li><%= link_to @script.dir, "/dir/#{@script.dir}" %> <span class="divider">/</span></li>
+  <li class="active"><%= @script.file %></li>
+</ul>
+<h1><%= @script.dir %> / <%= @script.file %></h1>
+<p id="notice"><%= notice %></p>
+<p>
+  <a href="<%= GITHUB_SCRIPTS_URL_BASE %>/<%= @script.dir %>/<%= @script.file %>" class="btn btn-info" target="_blank">
+    <i class="icon-folder-open icon-white"></i> Githubでコードを見る
+  </a>
+  <a href="/run/<%= @script.id %>" class="btn btn-danger">
+    <i class="icon-repeat icon-white"></i> 再度実行する
+  </a>
+</p>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>実行速度</th>
+      <th>STDOUT</th>
+      <th>実行日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @script.benches.each do |bench| %>
+        <tr>
+          <td><%= bench.result %></td>
+          <td><%= bench.stdout %></td>
+          <td><%= bench.created_at %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Back', '/dir/' + @script.dir %>

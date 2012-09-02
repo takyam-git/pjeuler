@@ -1,0 +1,29 @@
+<h1>問題一覧</h1>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Dir</th>
+      <th>Best script</th>
+      <th>Recent best score</th>
+      <th>Console</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @dirs.each do |dir| %>
+      <tr>
+        <td>
+          <%= link_to dir.dir, '/dir/' + dir.dir %>
+        </td>
+        <td>
+          <%= dir.file %>
+        </td>
+        <td>
+          <%= dir.recent %>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
