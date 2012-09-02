@@ -25,14 +25,11 @@ data =<<Data
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
 Data
 # 注: ここではたかだか 16384 通りのルートしかないので、すべてのパターンを試すこともできる。Problem 67 は同じ問題だが100行あるので、総当りでは解けない。もっと賢い方法が必要である。
-t = Time.now
-@ary = data.split(/\n/).map{|n| n.split(/ /).map(&:to_i)}
-(@ary.length - 2).downto(0) do |j|
-  @ary[j].each_index do |i|
-    @ary[j][i] += @ary[j + 1][i..(i+1)].max
+ary = data.each_line.map{|n| n.split(/ /).map(&:to_i)}
+(ary.length - 2).downto(0) do |j|                                                                               
+  ary[j].each_index do |i|
+    ary[j][i] += ary[j + 1][i..(i+1)].max
   end
-  @ary.pop
   # @ary.map{|row|p row}
 end
-p @ary[0][0]
-p Time.now - t
+p ary[0][0]
