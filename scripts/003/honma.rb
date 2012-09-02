@@ -1,34 +1,24 @@
-# t = Time.now
-# def prime?(num, ary)
-#   ary.each do |n|
-#     break if n * n  > num
-#     return false if num % n == 0
-#   end
-#   return true
-# end
+#!/usr/bin/env ruby
+# encoding : utf-8
+# 最大の素因数が求まればいいので配列に入れるのをやめた
 def factorization (num)
-  factor = []
-  # prime_ary = [2, 3, 5]
+  max = 0
+  # 2, 3, 5
+  [2, 3, 5].each do |prime|
+    num % prime == 0 && max = prime && num /= prime
+  end
+  # 7以降の素数候補で割る
   n = 0
   while true
     n += 1
     prime = 6 * n + 1
     break if prime * prime > num
-    if num % prime == 0
-      # prime_ary.push(prime)
-      factor << prime
-      num /= prime
-    end
+    num % prime == 0 && max = prime && num /= prime
     prime += 4
     break if prime * prime > num
-    if num % prime == 0
-      # prime_ary.push(prime)
-      factor << prime
-      num /= prime
-    end
+    num % prime == 0 && max = prime && num /= prime
   end
-  factor << num
-  return factor
+  max = num
+  return max
 end
-p factorization(600851475143).max
-# p Time.now - t
+p factorization(600851475143)
