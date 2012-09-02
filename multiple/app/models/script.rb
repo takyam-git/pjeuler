@@ -87,19 +87,49 @@ class Script < ActiveRecord::Base
     ')
   end
 
+  def self.dir_scripts(dir)
+    self.where('dir = ?', dir).order('recent ASC')
+  end
+
   def self.run_ruby(file_path)
-    return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'rubyだよー'
+    return self::run_command("ruby #{file_path}")
+    #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'rubyだよー'
   end
 
   def self.run_php(file_path)
-    return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'phpだよー'
+    return self::run_command("php #{file_path}")
+    #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'phpだよー'
   end
 
   def self.run_perl(file_path)
-    return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'perlだよー'
+    return self::run_command("perl #{file_path}")
+    #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'perlだよー'
   end
 
-  def self.dir_scripts(dir)
-    self.where('dir = ?', dir).order('recent ASC')
+  def self.run_command(command)
+    stdout = nil
+    status = 1
+    time = 999.999
+    timeout(60) do
+      begin
+        start = Time.now
+        stdout = `#{command}`
+        time = Time.now - start
+        p time
+        status = $?
+        p status
+      rescue Exception => e
+        case e
+          when Timeout::Error
+            status = 1
+            stdout = "Timeout Error: #{e.to_s}"
+        end
+      end
+    end
+    if status != 0
+      stdout = '!!ERROR!!' if stdout.nil?
+      time = 999.999
+    end
+    return time, stdout
   end
 end
