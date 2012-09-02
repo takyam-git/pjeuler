@@ -30,7 +30,11 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: pjeuler_multiple
   pool: 5
-  timeout: 5000
+  username: pjeuler_usr
+  password: pdB88KZ9iYbY2zKzmfhNX5tsWSfR2sVH
+  host: localhost
