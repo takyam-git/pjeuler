@@ -14,7 +14,7 @@
   <tbody>
   <% @scripts.each do |script| %>
       <tr>
-        <td><%= script.file %></td>
+        <td><%= link_to script.file, "/#{script.id}" %></td>
         <td><%= '%0.2f' % script.recent %></td>
         <td>
           <%= link_to '/' + script.id.to_s, :class => 'btn btn-mini btn-primary' do %>
