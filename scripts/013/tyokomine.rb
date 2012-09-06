@@ -102,8 +102,10 @@ n = '
 53503534226472524250874054075591789781264330331690'
 
 ary = n.split
-sums=0
-ary.each do |a|
-  sums += a.to_i
-end
-p sums.to_s.slice(0,10)
+p ary.inject(0){|sum,i| sum +=i.to_i}.to_s[0,10]
+
+#sums=0
+#ary.each do |a|
+#  sums += a.to_i
+#end
+#p sums.to_s.slice(0,10)
