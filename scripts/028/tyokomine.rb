@@ -1,6 +1,6 @@
-cnt = 1 #
-add = 0 #2ずつたす                                                                         
-num = 3 #繰り返し回数
+cnt = 1 
+add = 0                                                                          
+num = 3 
 ans = 1
 loop do
   num += 1
