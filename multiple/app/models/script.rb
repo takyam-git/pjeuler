@@ -92,18 +92,58 @@ class Script < ActiveRecord::Base
   end
 
   def self.run_ruby(file_path)
-    return self::run_command("ruby #{file_path}")
+    return self::parse_command("ruby #{Rails.root}/benchmark_scripts/benchmark.rb #{file_path}")
     #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'rubyだよー'
   end
 
   def self.run_php(file_path)
-    return self::run_command("php #{file_path}")
+    return self::parse_command("php #{Rails.root}/benchmark_scripts/benchmark.php #{file_path}")
     #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'phpだよー'
   end
 
   def self.run_perl(file_path)
     return self::run_command("perl #{file_path}")
     #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'perlだよー'
+  end
+
+  def self.parse_command(command)
+    stdout = nil
+    status = 1
+    time = 999.999
+    timeout(60) do
+      begin
+        stdout = `#{command}`
+        if stdout.size > 0
+          lines = stdout.split /(\r\n|\r|\n)/
+          time = lines[0].to_f
+          p lines
+          if lines.size > 1
+            if lines.size > 2
+              stdout = ''
+              1.upto(lines.size - 1) do |i|
+                stdout += lines[i]
+              end
+
+              p stdout
+            else
+              stdout = lines[1]
+            end
+            status = 0
+          end
+        end
+      rescue Exception => e
+        case e
+          when Timeout::Error
+            status = 1
+            stdout = "Timeout Error: #{e.to_s}"
+        end
+      end
+    end
+    if status != 0
+      stdout = '!!ERROR!!' if stdout.nil?
+      time = 999.999
+    end
+    return time, stdout
   end
 
   def self.run_command(command)
