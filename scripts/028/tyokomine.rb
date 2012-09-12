@@ -1,4 +1,4 @@
-# encoding :utf-8
+# encoding: utf-8
 cnt = 1 
 add = 0                                                                          
 num = 3 
