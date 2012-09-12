@@ -11,7 +11,7 @@ end
 
 file_path = ARGV[0]
 if file_path.nil?
-  echo "999.999\nERROR SCRIPT NOT FOUND"
+  puts "999.999\nERROR SCRIPT NOT FOUND"
   exit
 end
 ctx = File.read(file_path, :encoding => Encoding::UTF_8)
