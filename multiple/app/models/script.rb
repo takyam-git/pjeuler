@@ -102,7 +102,7 @@ class Script < ActiveRecord::Base
   end
 
   def self.run_perl(file_path)
-    return self::run_command("perl #{file_path}")
+    return self::parse_command("perl #{Rails.root}/benchmark_scripts/benchmark.pl #{file_path}")
     #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'perlだよー'
   end
 
