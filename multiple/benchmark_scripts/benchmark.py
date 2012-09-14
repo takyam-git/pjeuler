@@ -5,7 +5,7 @@ import os
 import time
 from StringIO import StringIO
 buffer = StringIO()
-if len(sys.argv) == 1 or os.path.exits(sys.argv[1]):
+if len(sys.argv) == 1 or not os.path.exists(sys.argv[1]):
     print "999.999\nERROR SCRIPT NOT FOUND"
     quit()
 
