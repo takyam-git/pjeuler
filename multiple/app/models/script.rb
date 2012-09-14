@@ -16,7 +16,7 @@ class Script < ActiveRecord::Base
     directories.each do |directory|
       dir_path = SCRIPTS_DIR_BASE + '/' + directory
       dir_files = Dir::entries(dir_path)
-                    .select{|file_name| file_name =~ /^[^.]+\.(rb|php|pl)$/}
+                    .select{|file_name| file_name =~ /^[^.]+\.(rb|php|pl|py)$/}
                     .select{|file| scripts.index(directory + '/' + file).nil? }
       new_scripts[directory] = dir_files if dir_files.size > 0
     end
@@ -48,6 +48,8 @@ class Script < ActiveRecord::Base
         result, stdout = Script::run_php(script_path)
       when '.pl'
         result, stdout = Script::run_perl(script_path)
+      when '.py'
+        result, stdout = Script::run_python(script_path)
     end
 
     if result.nil?
@@ -106,6 +108,11 @@ class Script < ActiveRecord::Base
     #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'perlだよー'
   end
 
+  def self.run_python(file_path)
+    return self::parse_command("python #{Rails.root}/benchmark_scripts/benchmark.py #{file_path}")
+    #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'perlだよー'
+  end
+
   def self.parse_command(command)
     stdout = nil
     status = 1
@@ -114,7 +121,7 @@ class Script < ActiveRecord::Base
       begin
         stdout = `#{command}`
         if stdout.size > 0
-          lines = stdout.split /(\r\n|\r|\n)/
+          lines = stdout.split(/(\r\n|\r|\n)/)
           time = lines[0].to_f
           p lines
           if lines.size > 1
