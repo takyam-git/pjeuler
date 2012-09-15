@@ -1,4 +1,5 @@
 #encoding: utf-8
+#日をループじゃないパターン
 year = 1900
 month = 1
 day = 1
