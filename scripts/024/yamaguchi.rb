@@ -1,0 +1,1 @@
+p (0..9).to_a.permutation.map{|numbers|numbers.join('').to_i}.sort[999_999]
