@@ -18,7 +18,6 @@ while true do
   if day == 7
     if date == 1 and year > 1900
       sun_cnt += 1
-      p "#{year}/#{month}"
     end
     day = 0
   end
