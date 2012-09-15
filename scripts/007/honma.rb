@@ -14,11 +14,11 @@ class HOMMA_PROBREM_007
   while  prime_ary.count < max
     n += 1
     prime = 6 * n + 1
-    if prime?(prime, prime_ary)
+    if self.prime?(prime, prime_ary)
       prime_ary.push(prime)
     end
     prime += 4
-    if prime?(prime, prime_ary)
+    if self.prime?(prime, prime_ary)
       prime_ary.push(prime)
     end
   end
