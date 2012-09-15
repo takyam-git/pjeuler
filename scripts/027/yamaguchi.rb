@@ -1,3 +1,4 @@
+# encoding: utf-8
 #オイラーは以下の二次式を考案している:
 #
 #    n2 + n + 41.
@@ -10,13 +11,21 @@
 #    n2 + an + b
 #n=0から始めて連続する整数で素数を生成したときに最長の長さとなる上の二次式の, 係数a, bの積を答えよ.
 require 'mathn'
+
+# 素数生成
+primes = {}
 max = 0
 max_a = 0
 max_b = 0
 -999.upto(999) do |a|
   -999.upto(999) do |b|
     n = 1
-    n += 1 while (n * n + (a * n) + b).prime?
+    while true
+      x = n * n + (a * n) + b
+      primes[x] = x.prime? if primes[x].nil?
+      break if !primes[x]
+      n += 1
+    end
     if max < n
       max = n
       max_a = a
