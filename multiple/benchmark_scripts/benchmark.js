@@ -1,21 +1,14 @@
-function fileGetContents( filename ){
+function fileCheck( filename ){
   var fs = require("fs");
-  var fileContent = "";
   try {
-    var stat = fs.statSync(filename);
-    var fd = fs.openSync(filename, "r");
-    var bytes = fs.readSync(fd, stat.size, 0, "utf8");
-    fileContent += bytes[0];
-    fs.closeSync(fd);
-    return fileContent;
-
+    fs.statSync(filename);
   } catch(e) {
     console.log("999.999\nERROR SCRIPT NOT FOUND");
     process.exit();
   }
 };
 var filename = process.argv[2] || "";
-//var code = fileGetContents(filename);
+fileCheck(filename);
 var microtime = require('microtime')
 var stdout = "";
 console.log = function (d) {
