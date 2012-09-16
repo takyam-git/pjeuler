@@ -15,14 +15,15 @@ function fileGetContents( filename ){
   }
 };
 var filename = process.argv[2] || "";
-var code = fileGetContents(filename);
+//var code = fileGetContents(filename);
 var microtime = require('microtime')
-var start = microtime.now();
 var stdout = "";
 console.log = function (d) {
   stdout = d;
 };
-var out = eval(code);
+var start = microtime.now();
+//var out = eval(code);
+require(filename); //js eval is very very slow
 var end = microtime.now();
 console.log = function (d) {
     process.stdout.write(d + '\n');
