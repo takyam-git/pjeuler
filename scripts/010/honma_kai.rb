@@ -1,5 +1,5 @@
 t = Time.now
-max = Integer(ARGV.shift || 2_000_000)
+max = 2_000_000
 max2 = (max-3)/2
 for_end = Integer((Math.sqrt(max)-3)/2)
 sieve = Array.new(max2, true)
