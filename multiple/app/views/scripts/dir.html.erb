@@ -15,7 +15,7 @@
   <% @scripts.each do |script| %>
       <tr>
         <td><%= link_to script.file, "/#{script.id}" %></td>
-        <td><%= '%0.2f' % script.recent %></td>
+        <td style="text-align:right;"><%= '%0.5f' % script.recent %></td>
         <td>
           <%= link_to '/' + script.id.to_s, :class => 'btn btn-mini btn-primary' do %>
             <i class="icon-file"></i> 詳細を見る

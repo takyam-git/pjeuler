@@ -9,4 +9,5 @@
 # である。
 # では、100! の各桁の数字の合計を求めよ。
 # p (1..10).inject(:*).to_s.split(//).map(&:to_i).inject(:+)
-p (1..100).inject(:*).to_s.split(//).map(&:to_i).inject(:+)
+# p (1..100).inject(:*).to_s.split(//).map(&:to_i).inject(:+)
+sum = 0;(1..100).inject(:*).to_s.each_byte{|byte| sum+= byte -48};p sum;

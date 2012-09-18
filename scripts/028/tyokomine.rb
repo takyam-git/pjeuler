@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # encoding : utf-8
+=======
+# encoding: utf-8
+>>>>>>> 2f6fbd2b05e5c96d0a36b9423081cb8f06fc288b
 cnt = 1 
 add = 0                                                                          
 num = 3 

@@ -7,7 +7,7 @@
 # 8 5 9 3
 # この例では 3 + 7 + 4 + 9 = 23
 # 以下の三角形を頂点から下まで移動するとき、その最大の合計値を求めよ。
-data =<<Data
+ary =<<EOF.each_line.map{|n| n.split(/ /).map(&:to_i)}
 75
 95 64
 17 47 82
@@ -23,13 +23,10 @@ data =<<Data
 91 71 52 38 17 14 91 43 58 50 27 29 48
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
-Data
-# 注: ここではたかだか 16384 通りのルートしかないので、すべてのパターンを試すこともできる。Problem 67 は同じ問題だが100行あるので、総当りでは解けない。もっと賢い方法が必要である。
-ary = data.each_line.map{|n| n.split(/ /).map(&:to_i)}
-(ary.length - 2).downto(0) do |j|                                                                               
+EOF
+(ary.size - 2).downto(0) do |j|
   ary[j].each_index do |i|
-    ary[j][i] += ary[j + 1][i..(i+1)].max
+    ary[j][i] += ary[j + 1][i] > ary[j+1][i+1] ? ary[j+1][i] : ary[j+1][i+1]
   end
-  # @ary.map{|row|p row}
 end
 p ary[0][0]

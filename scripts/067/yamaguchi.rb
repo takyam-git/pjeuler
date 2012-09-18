@@ -1,6 +1,4 @@
-#!/usr/bin/env ruby
-# encoding : utf-8
-ary =<<EOF.each_line.map{|n| n.split(/ /).map(&:to_i)}
+pyramid = <<EOL.split(/\r\n|\r|\n/).select{|str|str.size>0}.map{|str|str.split(' ').map(&:to_i)}
 59
 73 41
 52 40 09
@@ -101,10 +99,20 @@ ary =<<EOF.each_line.map{|n| n.split(/ /).map(&:to_i)}
 64 66 84 24 18 16 27 48 20 14 47 69 30 86 48 40 23 16 61 21 51 50 26 47 35 33 91 28 78 64 43 68 04 79 51 08 19 60 52 95 06 68 46 86 35 97 27 58 04 65 30 58 99 12 12 75 91 39 50 31 42 64 70 04 46 07 98 73 98 93 37 89 77 91 64 71 64 65 66 21 78 62 81 74 42 20 83 70 73 95 78 45 92 27 34 53 71 15
 30 11 85 31 34 71 13 48 05 14 44 03 19 67 23 73 19 57 06 90 94 72 57 69 81 62 59 68 88 57 55 69 49 13 07 87 97 80 89 05 71 05 05 26 38 40 16 62 45 99 18 38 98 24 21 26 62 74 69 04 85 57 77 35 58 67 91 79 79 57 86 28 66 34 72 51 76 78 36 95 63 90 08 78 47 63 45 31 22 70 52 48 79 94 15 77 61 67 68
 23 33 44 81 80 92 93 75 94 88 23 61 39 76 22 03 28 94 32 06 49 65 41 34 18 23 08 47 62 60 03 63 33 13 80 52 31 54 73 43 70 26 16 69 57 87 83 31 03 93 70 81 47 95 77 44 29 68 39 51 56 59 63 07 25 70 07 77 43 53 64 03 94 42 95 39 18 01 66 21 16 97 20 50 90 16 70 10 95 69 29 06 25 61 41 26 15 59 63 35
-EOF
-(ary.size - 2).downto(0) do |j|
-  ary[j].each_index do |i|
-    ary[j][i] += ary[j + 1][i] > ary[j+1][i+1] ? ary[j+1][i] : ary[j+1][i+1]
+EOL
+pr = [pyramid[0]]
+before = pyramid[0]
+1.upto(pyramid.size - 1) do |idx|
+  ary = pyramid[idx]
+  ary_size = ary.size
+  pry = [before[0]+ary[0]]
+  1.upto(ary_size-2) do |i|
+    b_num1 = before[i-1]
+    b_num2 = before[i]
+    pry << ary[i] + (b_num1 > b_num2 ? b_num1 : b_num2)
   end
+  pry << before[before.size-1]+ary[ary_size-1]
+  pr << pry
+  before = pry
 end
-p ary[0][0]
+p pr[pr.size-1].max
