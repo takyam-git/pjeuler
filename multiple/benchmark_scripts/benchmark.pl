@@ -8,7 +8,7 @@ use IO::Scalar;
 
 
 my $program = "";
-if (open(IN,  $ARGV[0] )) {
+if (open(IN,  $ARGV[0] || "../../scripts/028/inoue.pl")) {
     $program .= $_ for <IN>;
 } else {
   print "999.999\nERROR SCRIPT NOT FOUND\n";
@@ -22,9 +22,11 @@ my $end;
 {
     my $fh = new IO::Scalar(\$capture);
     local *STDOUT = $fh;
-    $start = [gettimeofday];
-    eval($program);
-    $end = [gettimeofday];
+    eval(
+        '$start = [gettimeofday];'
+        .$program
+        .'$end = [gettimeofday];'
+    );
 }
 printf "%.6f\n", tv_interval($start, $end);
 print $capture;
