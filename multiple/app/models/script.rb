@@ -16,7 +16,7 @@ class Script < ActiveRecord::Base
     directories.each do |directory|
       dir_path = SCRIPTS_DIR_BASE + '/' + directory
       dir_files = Dir::entries(dir_path)
-                    .select{|file_name| file_name =~ /^[^.]+\.(rb|php|pl|py|js)$/}
+                    .select{|file_name| file_name =~ /^[^.]+\.(rb|php|pl|py|js|coffee)$/}
                     .select{|file| scripts.index(directory + '/' + file).nil? }
       new_scripts[directory] = dir_files if dir_files.size > 0
     end
