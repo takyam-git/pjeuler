@@ -9,17 +9,19 @@
 // };
 var filename = process.argv[2] || "";
 // fileCheck(filename);
-var microtime = require('microtime')
+//var microtime = require('microtime')
 var stdout = "";
 console.log = function (d) {
   stdout = d;
 };
-var start = microtime.now();
+//var start = microtime.now();
 // eval(code);
+var start = (new Date).getTime();
 require(filename); //js eval is very very slow
-var end = microtime.now();
+//var end = microtime.now();
+var end = (new Date).getTime();
 console.log = function (d) {
     process.stdout.write(d + '\n');
 };
-console.log((end - start)/1000/1000);
+console.log((end - start)/1000);
 console.log(stdout);
