@@ -23,5 +23,5 @@ var end = (new Date).getTime();
 console.log = function (d) {
     process.stdout.write(d + '\n');
 };
-console.log((end - start)/1000/1000);
+console.log((end - start)/1000);
 console.log(stdout);
