@@ -1,17 +1,20 @@
+#get file path
 filename = process.argv[2]
-stdout = "";
 
-#override console.log
+#replace console.log()
+stdout = []
 console.log = (d) ->
-  stdout = d
+  stdout.push(d)
 
-start = (new Date).getTime()
-require(filename);
-end = (new Date).getTime()
+#start benchmark
+start = process.hrtime()
+require(filename) #js eval is very very slow
+result = process.hrtime(start)
 
-#reverse console.log
+#restore console.log()
 console.log = (d) ->
-    process.stdout.write(d + '\n')
+  process.stdout.write(d + '\n')
 
-console.log (end - start) / 1000
-console.log stdout
+#export benchmark time & stdout
+console.log(result[0] + (result[1] / 1000 / 1000 / 1000));
+console.log(stdout.join("\n"));
