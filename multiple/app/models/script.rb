@@ -16,7 +16,7 @@ class Script < ActiveRecord::Base
     directories.each do |directory|
       dir_path = SCRIPTS_DIR_BASE + '/' + directory
       dir_files = Dir::entries(dir_path)
-                    .select{|file_name| file_name =~ /^[^.]+\.(rb|php|pl|py|js)$/}
+                    .select{|file_name| file_name =~ /^[^.]+\.(rb|php|pl|py|js|coffee)$/}
                     .select{|file| scripts.index(directory + '/' + file).nil? }
       new_scripts[directory] = dir_files if dir_files.size > 0
     end
@@ -52,6 +52,8 @@ class Script < ActiveRecord::Base
         result, stdout = Script::run_python(script_path)
       when '.js'
         result, stdout = Script::run_js(script_path)
+      when '.coffee'
+        result, stdout = Script::run_coffee(script_path)
     end
 
     if result.nil?
@@ -112,12 +114,14 @@ class Script < ActiveRecord::Base
 
   def self.run_python(file_path)
     return self::parse_command("python #{Rails.root}/benchmark_scripts/benchmark.py #{file_path}")
-    #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'perlだよー'
   end
 
   def self.run_js(file_path)
     return self::parse_command("node #{Rails.root}/benchmark_scripts/benchmark.js #{file_path}")
-    #return ((rand(60).to_s + '.' + rand(59).to_s).to_f), 'perlだよー'
+  end
+
+  def self.run_coffee(file_path)
+    return self::parse_command("coffee #{Rails.root}/benchmark_scripts/benchmark.coffee #{file_path}")
   end
 
   def self.parse_command(command)

@@ -1,25 +1,22 @@
-// function fileCheck( filename ){
-//   var fs = require("fs");
-//   try {
-//     fs.statSync(filename);
-//   } catch(e) {
-//     console.log("999.999\nERROR SCRIPT NOT FOUND");
-//     process.exit();
-//   }
-// };
+//get file path
 var filename = process.argv[2] || "";
-// fileCheck(filename);
-var microtime = require('microtime')
-var stdout = "";
+
+//replace console.log()
+var stdout = [];
 console.log = function (d) {
-  stdout = d;
+  stdout.push(d);
 };
-var start = microtime.now();
-// eval(code);
+
+//start benchmark
+var start = process.hrtime();
 require(filename); //js eval is very very slow
-var end = microtime.now();
+var result = process.hrtime(start)
+
+//restore console.log()
 console.log = function (d) {
     process.stdout.write(d + '\n');
 };
-console.log((end - start)/1000/1000);
-console.log(stdout);
+
+//export benchmark time & stdout
+console.log(result[0] + (result[1] / 1000 / 1000 / 1000));
+console.log(stdout.join("\n"));
