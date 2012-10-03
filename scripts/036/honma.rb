@@ -18,25 +18,4 @@ p (1..999_999).select{|n| n == n.to_s.reverse.to_i and n.to_s(2) == n.to_s(2).re
 #   end
 # }
 # p sum # 1.2
-# sum = 0
-# def check(n)
-#   bin = n.to_s(2)
-#   if bin == bin.reverse
-#     sum += n
-#   end
-# end
-#
-# (1 .. 9).each do |n|
-#   check(n)
-# end
-# (1 .. 999).each do |n|
-#   # 偶数桁
-#   check( (n.to_s + n.to_s.reverse).to_i )
-#   # 奇数桁
-#   next if n > 99
-#   (0..9).each do |m|
-#     check( (n.to_s + m.to_s + n.to_s.reverse).to_i )
-#   end
-# end
-# p sum
 # p Time.now - t
