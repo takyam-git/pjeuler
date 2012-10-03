@@ -1,7 +1,4 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
-
 my $sum = 0;
 
 for my $n (1 .. 999) {
