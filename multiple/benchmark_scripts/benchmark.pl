@@ -1,14 +1,11 @@
 #!/usr/bin/env perl
-use strict;
+# use strict;
 use warnings;
-use utf8;
 use Time::HiRes qw/time gettimeofday tv_interval/;
-use Data::Dump qw/dump/;
 use IO::Scalar;
 
-
 my $program = "";
-if (open(IN,  $ARGV[0] || "../../scripts/028/inoue.pl")) {
+if (open(IN,  $ARGV[0] || "../../scripts/yapc2012/mary.pl")) {
     $program .= $_ for <IN>;
 } else {
   print "999.999\nERROR SCRIPT NOT FOUND\n";
@@ -29,4 +26,4 @@ my $end;
     );
 }
 printf "%.6f\n", tv_interval($start, $end);
-print $capture;
+# print $capture;
