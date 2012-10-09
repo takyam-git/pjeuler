@@ -4,7 +4,7 @@ n="MARY","PATRICIA","LINDA","BARBARA","ELIZABETH","JENNIFER","MARIA","SUSAN","MA
 #
 score = 0
 n.sort!
-n.each_with_index do |i|
+n.each_with_index do |a,i|
   sum = 0
   a.each_byte do |b|
     sum += b-64
