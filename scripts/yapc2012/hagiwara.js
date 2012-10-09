@@ -1,0 +1,2 @@
+console.log(function(c){var d=Math.log(c),d=Math.floor(c*(d+Math.log(d))/3),e=new Buffer(d);e.fill(1);for(var c=c-2,g=5,f=0,h=-1,a=0,b=0,a=0;;){f++;h++;a=e[h];if(1===a){g=g+6*f-1;c--;if(0===c)return g;for(a=0;;){a++;b=2*(f*(6*a-1)-a)-1;if(b>d)break;e[b]=0;b=2*(f*(6*a+1)-a)-2;if(b>d)break;e[b]=0}}h++;a=e[h];if(1===a){g=g+6*f+1;c--;if(0===c)return g;a=0;for(break_flag=!1;;){a++;b=2*(f*(6*a-1)+a)-2;if(b>d)break;e[b]=0;b=2*(f*(6*a+1)+a)-1;if(b>d)break;e[b]=0}}}}(1E4));
+
