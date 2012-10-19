@@ -2,6 +2,7 @@
 result = 0
 (1..1_000_000).each do |i|
   s = i.to_s
+  num = s+s.reverse
   if s==s.reverse 
     s2 = i.to_s(2)
     if s2==s2.reverse
