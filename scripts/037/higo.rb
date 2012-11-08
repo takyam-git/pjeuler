@@ -1,20 +1,28 @@
-require 'mathn'
+start = Time.now
+require 'set'
 
-@prime = Array.new
-@notprime = Array.new
+@prime = Set.new [ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 ]
 @funny = Array.new
 
+## 素数の候補を返す。30で割った余りが以下のものが素数の候補
+@pc = [1, 7, 11, 13, 17, 19, 23, 29, \
+       31] #←繰り上がり対応用
+def next_prime_candidate(now)
+  return @prime.to_a[ @prime.to_a.index(now) + 1 ] if now < 29
+  mod = now % 30
+  return now - mod + @pc[ @pc.index(mod) + 1 ]
+end
+
+## 素数判定
 def check_prime(n)
-  return false if n < 1
-  return true if @prime[n]
-  return false if @notprime[n]
-  if n.prime? 
-    @prime[n] = true
-    return true
-  else
-    @notprime[n] = true
-    return false
+  return false if n <= 1
+  return true if @prime.include?(n)
+  @prime.each do |p|
+    break if p * p > n
+    return false if n % p == 0
   end
+  @prime.add(n)
+  return true
 end
 
 def check_funny(n)
@@ -30,32 +38,19 @@ def check_funny(n)
   checkAry.uniq.each do |n|
     return false if !check_prime(n)
   end
-  #p n
 end
 
-## 素数の候補を返す。30で割った余りが以下のものが素数の候補
-@pc = [1, 7, 11, 13, 17, 19, 23, 29, \
-       31] #←繰り上がり対応用
-def next_prime_candidate(now)
-  mod = now % 30
-  return now - mod + @pc[ @pc.index(mod) + 1 ]
-end
-
-# 5,7は該当しないので11からスタート
-n = 11
+n = 2
 loop do
-  if ( check_prime(n) && ! @funny.index(n) )
+  if ( check_prime(n) )
     #p n
-    @funny << n if check_funny(n)
+    @funny << n if check_funny(n) && n > 10
     #p @funny
     break if @funny.size > 10
   end
-  if n > 30
-    n = next_prime_candidate(n)
-  else
-    n += 1
-  end
+  n = next_prime_candidate(n)
 end
 
 p @funny
 p @funny.inject(:+)
+print "took " + ((Time.now - start) * 1000).round.to_s + "ms.\n"
