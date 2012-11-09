@@ -1,5 +1,6 @@
 # 三角形なので a + b > c
 # cを固定してa + b を探す
+# pは偶数
 require 'set'
 @loop = 0
 @pit = Array.new
@@ -7,14 +8,15 @@ require 'set'
 @max_at = 0
 
 def solve(p)
+  return if p % 2 != 0
   p p
-  @pit[p] = []
   ans = 0
   (p/2).floor.downto(1) do |c|
     (1 .. ((p-c)/2).floor).each do |a|
       @loop += 1
       b = p - c - a
       if a ** 2 + b ** 2 == c ** 2
+        @pit[p] = [] if ! @pit[p]
         @pit[p] << [a, b, c]
         ans += 1
       end
