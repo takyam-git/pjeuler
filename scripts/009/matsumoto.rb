@@ -6,7 +6,7 @@ for i in 1..1000 do
     end
 
     if k*k == i*i + j*j then
-      p i * j * k    
+      p i * j * k
     end
   end
 end

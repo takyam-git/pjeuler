@@ -7,8 +7,8 @@
 #その4個の分数の積が約分された形で与えられたとき, 分母の値を答えよ.
 
 result = 1
-for a in 10..98
-  for b in 11..99
+for b in 11..99
+  for a in 11..b
     next if a >= b
     as = a.to_s
     bs = b.to_s
