@@ -15,10 +15,11 @@ def main():
     min_ = min
 
     for y in xr(1, H):
-        scores[0] += M[y][0]
+        L = M[y]
+        scores[0] += L[0]
         s = scores[0]
         for x in xr(1, W):
-            s = scores[x] = min_(scores[x], s) + M[y][x]
+            s = scores[x] = min_(scores[x], s) + L[x]
 
     return scores[-1]
 
