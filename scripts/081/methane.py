@@ -1,4 +1,3 @@
-import sys
 def main():
     M = open('matrix.txt').read().split()
     M = [map(int, m.split(',')) for m in M]
@@ -6,8 +5,6 @@ def main():
 
     H = len(M)
     W = len(M[0])
-
-    Z = sys.maxint
 
     scores = [0] * W
     s = 0
@@ -18,10 +15,10 @@ def main():
     min_ = min
 
     for y in xr(1, H):
-        s = sys.maxint
         scores[0] += M[y][0]
+        s = scores[0]
         for x in xr(1, W):
-            scores[x] = min_(scores[x], scores[x-1]) + M[y][x]
+            s = scores[x] = min_(scores[x], s) + M[y][x]
 
     return scores[-1]
 
