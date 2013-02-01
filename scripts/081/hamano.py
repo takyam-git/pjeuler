@@ -5,11 +5,6 @@ from ctypes import *
 from platform import machine
 from struct import pack
 
-#import resource
-#stacksize = 80 * 1024 * 1024
-#stacksize = 63 * 1024 * 1024 # OSX
-#resource.setrlimit(resource.RLIMIT_STACK, (stacksize, stacksize))
-
 obj = [
  0x41,0x56,                          # push   %r14
  0x41,0x55,                          # push   %r13
@@ -73,10 +68,7 @@ obj = [
  0x45,0x01,0xf3,                     # add    %r14d,%r11d
  0x39,0xdf,                          # cmp    %ebx,%edi
  0x75,0x9d,                          # jne    4006b7 <p81+0x68>
- 0x8d,0x43,0x01,                     # lea    0x1(%rbx),%eax
- 0x6b,0xc0,0x4f,                     # imul   $0x4f,%eax,%eax
- 0x48,0x98,                          # cltq   
- 0x8b,0x44,0x84,0x88,                # mov    -0x78(%rsp,%rax,4),%eax
+ 0x8b,0x84,0x24,0x84,0x63,0x00,0x00, # mov    0x6384(%rsp),%eax
  0x48,0x81,0xc4,0x88,0x63,0x00,0x00, # add    $0x6388,%rsp
  0x5b,                               # pop    %rbx
  0x5d,                               # pop    %rbp
