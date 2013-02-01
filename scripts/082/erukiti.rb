@@ -46,15 +46,14 @@ def solve(x = 0, y = 0, stop = 0)
 
   n = matrix(x, y)
   results = [n + solve(x + 1, y)]
-  if y > 0 && stop <= 0
+  if x > 0 && y > 0 && stop <= 0
     results << n + solve(x, y - 1, -1)
   end
-  if y < MAX_Y && stop >= 0
+  if x > 0 && y < MAX_Y && stop >= 0
     results << n + solve(x, y + 1, 1)
   end
   $memo[x + y * WIDTH] = results.min
-  $memo[x + y * WIDTH]
 end
 
-p (MAX_Y + 1).times.map {|y| solve(0, y)}.min
+p (0..MAX_Y).map {|y| solve(0, y)}.min
 #p $c
