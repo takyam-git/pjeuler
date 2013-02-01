@@ -29,7 +29,7 @@ end
 
 $memo = Array.new($matrix.size)
 
-$c = 0
+#$c = 0
 
 def matrix(x, y)
   $matrix[x + y * WIDTH]
@@ -40,7 +40,7 @@ def memo(x, y)
 end
 
 def solve(x = 0, y = 0)
-  $c += 1
+  #$c += 1
   return memo(x, y) unless memo(x, y).nil?
 
   if x == MAX_X && y == MAX_Y
