@@ -1,5 +1,5 @@
 var fs = require('fs');
-var a = fs.readFileSync(process.argv[1].replace(/[^/]*$/, '')+'matrix.txt').toString().split('\n');
+var a = fs.readFileSync('matrix.txt').toString().split('\n');
 a.pop();
 for (var i = 0; i < a.length; ++ i) {
 	a[i] = a[i].split(',');

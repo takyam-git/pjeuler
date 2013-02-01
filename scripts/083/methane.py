@@ -10,7 +10,6 @@ def main():
 
     scores = [(M[0][0], 0, 0)]
     R = [[0]*W for _ in xrange(H)]
-    R[0][0] = M[0][0]
 
     def next(xx, yy):
         if not R[yy][xx]:
@@ -24,8 +23,12 @@ def main():
             #for r in R:
             #    print r
             return s
+        if y > 0:
+            next(x, y-1)
         if y < H-1:
             next(x, y+1)
+        if x > 0:
+            next(x-1, y)
         if x < W-1:
             next(x+1, y)
 
