@@ -5,7 +5,9 @@ f.each do |line|
   matrix.push(line.chomp.split(','))
 end
 
+sleep(2)
 p matrix[0][0]
+
 
 #l = matrix.size
 #(0 .. l).each.
