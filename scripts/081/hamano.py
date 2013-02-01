@@ -88,6 +88,8 @@ obj['x86_64'] = [
 # instruction count: 74
 ]
 
+#from p81 import obj
+
 code = create_string_buffer(''.join(map(chr, obj[machine()])))
 addr = addressof(code)
 ps = pythonapi.getpagesize()
@@ -100,13 +102,8 @@ import sys
 
 mat=[]
 sum=[]
-h=0
 for line in open('matrix.txt'):
-    row = map(int, line.split(','))
-    mat += row
-    w = len(row)
-    sum.append([0] * w)
-    h += 1
+    mat += map(int, line.split(','))
 
 from struct import pack
 p = create_string_buffer(''.join(map(lambda i: pack("i", i), mat)))
