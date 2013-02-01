@@ -14,8 +14,8 @@ def main():
 
     def next(xx, yy):
         if not R[yy][xx]:
-            ss = M[yy][xx]
-            R[yy][xx] = ss + s
+            ss = M[yy][xx] + s
+            R[yy][xx] = ss
             heappush(scores, (ss, xx, yy))
 
     while scores:
