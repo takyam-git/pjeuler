@@ -1,5 +1,5 @@
 
-f = open("./matrix.txt")
+f = open("../scripts/081/matrix.txt")
 matrix = Array.new
 f.each do |line| 
   matrix.push(line.chomp.split(','))
