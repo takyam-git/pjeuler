@@ -1,32 +1,28 @@
-
+import sys
 def main():
-    from heapq import heapify, heappush, heappop
-
     M = open('matrix.txt').read().split()
     M = [map(int, m.split(',')) for m in M]
+    xr = xrange
 
     H = len(M)
     W = len(M[0])
 
-    scores = [(M[0][0], 0, 0)]
-    R = [[0]*W for _ in xrange(H)]
-    R[0][0] = M[0][0]
+    Z = sys.maxint
 
-    def next(xx, yy):
-        if not R[yy][xx]:
-            ss = M[yy][xx] + s
-            R[yy][xx] = ss
-            heappush(scores, (ss, xx, yy))
+    scores = [0] * W
+    s = 0
+    for x in xr(W):
+        s += M[0][x]
+        scores[x] = s
 
-    while scores:
-        s, x, y = heappop(scores)
-        if x == W-1 and y == H-1:
-            #for r in R:
-            #    print r
-            return s
-        if y < H-1:
-            next(x, y+1)
-        if x < W-1:
-            next(x+1, y)
+    min_ = min
+
+    for y in xr(1, H):
+        s = sys.maxint
+        scores[0] += M[y][0]
+        for x in xr(1, W):
+            scores[x] = min_(scores[x], scores[x-1]) + M[y][x]
+
+    return scores[-1]
 
 print main()
