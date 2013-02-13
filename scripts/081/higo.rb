@@ -114,7 +114,8 @@ end
 # その他を見ていくときは、上と左のminが最小
 (1 .. h-1).each do |i|
   (1 .. w-1).each do |j|
-    @score[j][i] += [ @score[j][i-1], @score[j-1][i] ].min + @matrix[j][i]
+    #@score[j][i] += [ @score[j][i-1], @score[j-1][i] ].min + @matrix[j][i]
+    @score[j][i] += ( @score[j][i-1] < @score[j-1][i] ? @score[j][i-1] : @score[j-1][i]) + @matrix[j][i]
   end
 end
 
