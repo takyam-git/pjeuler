@@ -1,29 +1,30 @@
 #!/usr/bin/env ruby
 # coding : utf-8
-require "pp"
+now = Time.now
 data = File.read("matrix.txt")
-ary = data.each_line.map{|line| line.split(/,/).map(&:to_i)}
-x = ary.length - 1
-y = ary.length - 1
-# p ary[x][y]
-sum = ary[x][y]
-(2 * (ary.length - 1)).times do
-  if x == 0
-    y -= 1
-    sum += ary[x][y]
-    next
+matrix = data.each_line.map{|line| line.split(/,/).map(&:to_i)}
+n = matrix.size
+masu = Array.new(n).map! {Array.new(n) {|m| m = 0}}
+masu[0][0] = matrix[0][0]
+n.times do |x|
+  n.times do |y|
+    if y + 1 < n
+      tmp = masu[x][y] + matrix[x][y + 1]
+      if masu[x][y+1] == 0
+        masu[x][y + 1] = tmp
+      elsif tmp < masu[x][y+1]
+        masu[x][y + 1] = tmp
+      end
+    end
+    if x + 1 < n
+      tmp = masu[x][y] + matrix[x + 1][y]
+      if masu[x + 1][y] == 0
+        masu[x + 1][y] = tmp
+      elsif tmp < masu[x + 1][y]
+        masu[x + 1][y] = tmp
+      end
+    end
   end
-  if y == 0
-    x -= 1
-    sum += ary[x][y]
-    next
-  end
-  if ary[x-1][y] < ary[x][y-1]
-    x -= 1
-  else
-    y -= 1
-  end
-  sum += ary[x][y]
-  p [ary[x][y], x, y]
 end
-p sum
+p masu[-1][-1]
+p Time.now - now
