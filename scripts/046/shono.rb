@@ -41,6 +41,6 @@ while 1 do
 
   if not f
     puts i
-    exit
+    break
   end
 end
