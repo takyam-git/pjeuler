@@ -11,7 +11,7 @@ while (1) {
     $n++;
 }
 
-print "$n\n";
+print $n;
 
 sub goldbach {
     my $n = shift;
