@@ -94,10 +94,10 @@ class AStar
 end
 
 
-matrix = File.read('matrix_sample.txt')
+matrix = File.read('matrix.txt')
 
 vec = [ { :x=>1, :y=>0 }, { :x=>0, :y=>1 } ]
-maze = Maze.new(matrix, vec, { :x=>5, :y=>5 } )
+maze = Maze.new(matrix, vec )
 
 maze.search
 
