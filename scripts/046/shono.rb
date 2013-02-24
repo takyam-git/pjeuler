@@ -36,11 +36,11 @@ while 1 do
     break if k >= i
 
     l = i - k
-    f = true and next if Prime.prime?(l)
+    f = true and break if Prime.prime?(l)
   end
 
   if not f
     puts i
-    exit
+    break
   end
 end
