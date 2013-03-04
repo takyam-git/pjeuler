@@ -25,7 +25,6 @@ loop do
   prime = 6*n+1
   if prime.prime?
     if fanc(prime)
-      p prime
       ans_cnt += 1
       ans += prime
     end
@@ -33,7 +32,6 @@ loop do
   prime += 4
   if prime.prime?
     if fanc(prime)
-      p prime
       ans_cnt += 1
       ans += prime
     end
