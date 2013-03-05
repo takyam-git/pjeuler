@@ -81,7 +81,7 @@ aa.each do |a|
   t = t.to_i
   v = t if v < t
 end
-puts v
+p v
 #128, 239,3410,456,567
 
 
