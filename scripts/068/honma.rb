@@ -2,18 +2,23 @@
 # coding : utf-8
 answer_ary = []
 answer_value = 0
+sum = 0;
 (1..10).to_a.permutation(3) {|a, b, c|
   # 最初の要素を出す
-  # p [a, b, c]
   answer_ary << [a, b, c]
   ary = (1..10).to_a
   [a, b, c].each do |n|
     ary.to_a.delete(n)
   end
+  sum = answer_ary[0].inject(&:+)
+  unless [14, 16, 17, 19].include?(sum)
+    answer_ary = []
+    next
+  end
   # 残りの要素を出す
   ary.permutation(2) {|d, e|
     answer_ary << [d, c, e]
-    unless answer_ary[0].inject(&:+) == answer_ary[1].inject(&:+)
+    unless sum == answer_ary[1].inject(&:+)
       answer_ary.pop
       next
     end
@@ -23,7 +28,7 @@ answer_value = 0
     end
     ary2.permutation(2) {|f, g|
       answer_ary << [f, e, g]
-      unless answer_ary[1].inject(&:+) == answer_ary[2].inject(&:+)
+      unless sum == answer_ary[2].inject(&:+)
         answer_ary.pop
         next
       end
@@ -33,7 +38,7 @@ answer_value = 0
       end
       ary3.permutation(2) {|h, i|
         answer_ary << [h, g, i]
-        unless answer_ary[2].inject(&:+) == answer_ary[3].inject(&:+)
+        unless sum == answer_ary[3].inject(&:+)
           answer_ary.pop
           next
         end
@@ -43,13 +48,17 @@ answer_value = 0
         end
         j = ary4[0]
         answer_ary << [j, i, b]
-        unless answer_ary[3].inject(&:+) == answer_ary[4].inject(&:+)
+        unless sum == answer_ary[4].inject(&:+)
           answer_ary.pop
           answer_ary.pop
           next
         end
-
         # "magic" 5-gon ringがとりあえずできた
+        unless answer_ary.flatten.join.length == 16
+          answer_ary.pop
+          answer_ary.pop
+          next
+        end
         min_index = 0
         min_value = 11
         answer_ary.each_with_index do |min, i|
