@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # coding : utf-8
+# start = Time.now
 answer_ary = []
 answer_value = 0
 sum = 0;
@@ -38,8 +39,7 @@ num_list.permutation(3) {|a, b, c|
         j = ary4[0]
         answer_ary << [j, i, b]
         unless sum == answer_ary[4].inject(&:+)
-          answer_ary.pop
-          answer_ary.pop
+          answer_ary.pop(2)
           next
         end
         min_index = 0
@@ -56,8 +56,7 @@ num_list.permutation(3) {|a, b, c|
         end
         ans = answer_ary.flatten.join.to_i
         answer_value = ans if answer_ary.flatten.join.length == 16 and answer_value < ans
-        answer_ary.pop
-        answer_ary.pop
+        answer_ary.pop(2)
       }
       answer_ary.pop
     }
@@ -65,4 +64,6 @@ num_list.permutation(3) {|a, b, c|
   }
   answer_ary = []
 }
+start = Time.now
 p answer_value
+# p Time.now - start
