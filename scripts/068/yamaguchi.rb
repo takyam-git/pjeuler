@@ -1,44 +1,45 @@
-num_ary=[*1..10]
-numbers = []
-num_ary.each do |num1|
-  ary1 = num_ary.clone
-  ary1.delete(num1)
-  ary1.each do |num2|
-    ary2 = ary1.clone
-    ary2.delete(num2)
-    ary2.each do |num3|
-      ary3 = ary2.clone
-      ary3.delete(num3)
-      ary3.each do |num4|
-        ary4 = ary3.clone
-        ary4.delete(num4)
-        ary4.each do |num5|
-          ary5 = ary4.clone
-          ary5.delete(num5)
-          ary5.each do |num6|
-            ary6 = ary5.clone
-            ary6.delete(num6)
-            ary6.each do |num7|
-              ary7 = ary6.clone
-              ary7.delete(num7)
-              ary7.each do |num8|
-                ary8 = ary7.clone
-                ary8.delete(num8)
-                ary8.each do |num9|
-                  ary9 = ary8.clone
-                  ary9.delete(num9)
-                  ary9.each do |num10|
-                    numbers.push [num1, num2, num3, num4, num5, num6, num7, num8, num9, num10]
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
-    end
-  end
-end
+#num_ary=[*1..10]
+#numbers = []
+#num_ary.each do |num1|
+#  ary1 = num_ary.clone
+#  ary1.delete(num1)
+#  ary1.each do |num2|
+#    ary2 = ary1.clone
+#    ary2.delete(num2)
+#    ary2.each do |num3|
+#      ary3 = ary2.clone
+#      ary3.delete(num3)
+#      ary3.each do |num4|
+#        ary4 = ary3.clone
+#        ary4.delete(num4)
+#        ary4.each do |num5|
+#          ary5 = ary4.clone
+#          ary5.delete(num5)
+#          ary5.each do |num6|
+#            ary6 = ary5.clone
+#            ary6.delete(num6)
+#            ary6.each do |num7|
+#              ary7 = ary6.clone
+#              ary7.delete(num7)
+#              ary7.each do |num8|
+#                ary8 = ary7.clone
+#                ary8.delete(num8)
+#                ary8.each do |num9|
+#                  ary9 = ary8.clone
+#                  ary9.delete(num9)
+#                  ary9.each do |num10|
+#                    numbers.push [num1, num2, num3, num4, num5, num6, num7, num8, num9, num10]
+#                  end
+#                end
+#              end
+#            end
+#          end
+#        end
+#      end
+#    end
+#  end
+#end
+numbers = [*1..10].permutation(10)
 aa = []
 bb = {}
 numbers.each do |n|
