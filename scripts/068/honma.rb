@@ -6,10 +6,7 @@ sum = 0;
 (1..10).to_a.permutation(3) {|a, b, c|
   # 最初の要素を出す
   answer_ary << [a, b, c]
-  ary = (1..10).to_a
-  [a, b, c].each do |n|
-    ary.to_a.delete(n)
-  end
+  ary = (1..10).to_a - [a, b, c]
   sum = answer_ary[0].inject(&:+)
   unless [14, 16, 17, 19].include?(sum)
     answer_ary = []
@@ -22,30 +19,21 @@ sum = 0;
       answer_ary.pop
       next
     end
-    ary2 = (1..10).to_a
-    [a, b, c, d, e].each do |n|
-      ary2.to_a.delete(n)
-    end
+    ary2 = (1..10).to_a - [a, b, c, d, e]
     ary2.permutation(2) {|f, g|
       answer_ary << [f, e, g]
       unless sum == answer_ary[2].inject(&:+)
         answer_ary.pop
         next
       end
-      ary3 = (1..10).to_a
-      [a, b, c, d, e, f, g].each do |n|
-        ary3.to_a.delete(n)
-      end
+      ary3 = (1..10).to_a - [a, b, c, d, e, f, g]
       ary3.permutation(2) {|h, i|
         answer_ary << [h, g, i]
         unless sum == answer_ary[3].inject(&:+)
           answer_ary.pop
           next
         end
-        ary4 = (1..10).to_a
-        [a, b, c, d, e, f, g, h, i].each do |n|
-          ary4.to_a.delete(n)
-        end
+        ary4 = (1..10).to_a - [a, b, c, d, e, f, g, h, i]
         j = ary4[0]
         answer_ary << [j, i, b]
         unless sum == answer_ary[4].inject(&:+)
