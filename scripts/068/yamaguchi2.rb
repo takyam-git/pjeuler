@@ -27,7 +27,8 @@ aa.each do |a|
   f = [a1[0],a2[0],a3[0],a4[0],a5[0]]
   s = f.index(f.min)
 
-  next if a[s][0] < d
+  z = a[s][0]
+  next if z < d
 
   w = []
   0.upto(4) do |h|
@@ -39,5 +40,7 @@ aa.each do |a|
   next if t.size > 16
   t = t.to_i
   v = t if v < t
+
+  d = z
 end
 p v
