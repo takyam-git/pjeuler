@@ -1,3 +1,4 @@
+# けっこうズルしたバージョン
 res = []
 sum = ((6..10).to_a.inject(:+) + (1..5).to_a.inject(:+)*2) / 5
 (7..10).to_a.permutation do |n|
