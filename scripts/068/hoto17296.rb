@@ -1,53 +1,14 @@
-
-nums = [1,2,3,4,5,6,7,8,9,10]
-results = []
-
-def createPattern(pattern, sum, used)
-  idx = pattern.size
-  pattern.push([nil, pattern[idx-1][2], nil])
-  result = []
-  10.times do |n|
-    idx = pattern.size - 1
-    unless used[n]
-      m = sum - pattern[idx][1] - n
-      if m > 0 && m <= 10 && m!=n && !used[m]
-        used_tmp = used 
-        pattern_tmp = pattern
-        pattern_tmp[idx][0] = n
-        pattern_tmp[idx][2] = m
-        used_tmp[n] = true
-        used_tmp[m] = true
-        if idx==4
-          result.push generateStr pattern_tmp
-        else
-          result += createPattern pattern_tmp, sum, used_tmp
-        end
-      end
-    end
-  end
-  return result
-end
-
-def generateStr(pattern)
-  result = []
-  5.times do |n|
-    str = ""
-    5.times do |m|
-      str += pattern[(m+n)%5].join
-    end
-    result.push str.to_i
-  end
-  return result.min
-end
-
-nums.permutation(3) do |initialNum|
-  sum = initialNum.inject(:+)
-  if sum > 12 && sum <=16
-    used = Array.new(11).fill(false)
-    initialNum.each {|n| used[n] = true }
-    pattern = [initialNum]
-    results += createPattern pattern, sum, used
+res = []
+sum = ((6..10).to_a.inject(:+) + (1..5).to_a.inject(:+)*2) / 5
+(7..10).to_a.permutation do |n|
+  n.unshift(6)
+  (1..5).to_a.permutation do |m|
+    next if n[0]+m[0]+m[1] != sum
+    next if n[1]+m[1]+m[2] != sum
+    next if n[2]+m[2]+m[3] != sum
+    next if n[3]+m[3]+m[4] != sum
+    next if n[4]+m[4]+m[0] != sum
+    res.push("#{n[0]}#{m[0]}#{m[1]}#{n[1]}#{m[1]}#{m[2]}#{n[2]}#{m[2]}#{m[3]}#{n[3]}#{m[3]}#{m[4]}#{n[4]}#{m[4]}#{m[0]}".to_i)
   end
 end
-
-p results.max
+p res.max
