@@ -19,11 +19,13 @@ cnt = 0
 total = 1
 loop do
   i += 2
-  for t in 1..4
+  for t in 1..3
     n += i
     total += 1
     cnt += 1 if n.prime?
   end
+  n += i
+  total += 1
   break if cnt.to_f/total < 0.1
 end
 p i+1
