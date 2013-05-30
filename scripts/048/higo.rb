@@ -1,5 +1,5 @@
 sumup = 0
-(1..1000).to_a.each do |n|
+for n in 1 .. 1000
   tmp = 1
   n.times do 
     tmp *= n
