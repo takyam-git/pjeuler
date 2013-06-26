@@ -26,4 +26,4 @@ my $end;
     );
 }
 printf "%.6f\n", tv_interval($start, $end);
-# print $capture;
+print $capture, "\n";
