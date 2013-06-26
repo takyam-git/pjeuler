@@ -10,4 +10,6 @@ while ( divisor <= divided ) do
   end
   divisor += 1
 end
-p factors.last
+print "given number: ", a.to_s ,"\n"
+print "factors: "
+p factors
