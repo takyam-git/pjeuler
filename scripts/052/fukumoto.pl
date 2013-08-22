@@ -6,23 +6,14 @@ my $start = 1;
 END: while (1) {
     $start *= 10;
 
-    LOOP: for my $i ($start..$start * 10 / 6) {
-        for (2..6) {
-            next LOOP unless check($i, $i * $_);
+    LOOP1: for my $i ($start..$start * 10 / 6) {
+        LOOP2: for my $j (2..6) {
+            my $mul = $i * $j;
+            for my $check (split //, $i) {
+                next LOOP1 unless $mul =~ /$check/;
+            }
         }
         print "$i\n";
         last END;
     }
-}
-
-sub check {
-    my ($base, $target) = @_;
-
-    my @base = split //, $base;
-
-    for my $i (@base) {
-        return 0 unless $target =~ /$i/;
-    }
-
-    return 1;
 }
