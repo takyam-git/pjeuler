@@ -7,7 +7,7 @@ q = (x,y)=>
   for s in x
     return false if y.indexOf(s) < 0
   return true
-x = 1
+x = 123456
 while x++
   xs = x.toString()
   break if q(xs,x*6) and q(xs,x*5) and q(xs,x*4) and q(xs,x*3) and q(xs,x*2)

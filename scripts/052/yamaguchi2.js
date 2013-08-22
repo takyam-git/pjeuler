@@ -16,7 +16,7 @@
     return true;
   };
 
-  x = 1;
+  x = 123456;
 
   while (x++) {
     xs = x.toString();
