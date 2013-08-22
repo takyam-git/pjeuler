@@ -20,7 +20,7 @@ while n += 1 do
   end
   if flag == true
     p n
-    return
+    break 
   end
 end
 
