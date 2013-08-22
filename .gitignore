@@ -1,3 +1,4 @@
 reports/benchmarks/*
 reports/index.html
 node_modules
+.*.sw*

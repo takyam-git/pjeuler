@@ -13,17 +13,17 @@ if (open(IN,  $ARGV[0] || "../../scripts/yapc2012/mary.pl")) {
 }
 close(IN);
 
-my $capture;
-my $start;
-my $end;
+my $capture99999='';
+my $start99999;
+my $end99999;
 {
-    my $fh = new IO::Scalar(\$capture);
+    my $fh = new IO::Scalar(\$capture99999);
     local *STDOUT = $fh;
     eval(
-        '$start = [gettimeofday];'
+        '$start99999 = [gettimeofday];'
         .$program
-        .'$end = [gettimeofday];'
+        .'$end99999 = [gettimeofday];'
     );
 }
-printf "%.6f\n", tv_interval($start, $end);
-# print $capture;
+printf "%.6f\n", tv_interval($start99999, $end99999);
+print $capture99999, "\n";
