@@ -1,5 +1,5 @@
 
-n = 1
+n = 123456
 def compare(org = Array, comp)
   if org == comp.to_s.split('').uniq.sort.to_a 
     #p [org, comp]
