@@ -7,7 +7,7 @@ function digits(n) {
     return r;
 }
 
-for (var n = 12; n <= 987654321; n++) {
+for (var n = 123456; n <= 987654321; n++) {
     var d = digits(n);
     for (var mul = 2; mul <= 6; mul++) {
         var d1 = digits(mul * n);
