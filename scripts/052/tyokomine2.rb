@@ -4,12 +4,12 @@
 i = 123456
 loop do
 	i += 1
-	str = i.to_s.split('').sort.join
-	 if (i*2).to_s.split('').sort.join == str &&
-		 (i*3).to_s.split('').sort.join == str &&
-		 (i*4).to_s.split('').sort.join == str &&
-		 (i*5).to_s.split('').sort.join == str &&
-		 (i*6).to_s.split('').sort.join == str
+	str = i.to_s.split('').sort
+	 if (i*2).to_s.split('').sort == str &&
+		 (i*3).to_s.split('').sort == str &&
+		 (i*4).to_s.split('').sort == str &&
+		 (i*5).to_s.split('').sort == str &&
+		 (i*6).to_s.split('').sort == str
 		 p i
 		 break
 	 end
