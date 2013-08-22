@@ -11,19 +11,14 @@ end
 while n += 1 do
   bits = Array.new
   bits = n.to_s.split('').uniq.sort.to_a
-  flag = true
-  (2..6).each do |i|
-    unless compare(bits, n * i)
-      flag = false
-      break
-    end
-  end
-  if flag == true
-    p n
-    break 
-  end
-end
 
+  compare(bits, 2 * n) and 
+    compare(bits, 3 * n) and
+    compare(bits, 4 * n) and
+    compare(bits, 5 * n) and
+    compare(bits, 6 * n) and
+    p n and break
+end
 
 
 
