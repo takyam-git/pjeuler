@@ -1,7 +1,7 @@
 
 n = 1
 def compare(org = Array, comp)
-  if ( org <=> comp.to_s.split('').uniq.sort.to_a ) == 0
+  if ( org == comp.to_s.split('').uniq.sort.to_a ) == 0
     #p [org, comp]
     return true
   end
