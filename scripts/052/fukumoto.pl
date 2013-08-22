@@ -1,13 +1,13 @@
 use strict;
 use warnings;
-
-LOOP1: for my $i (123456 .. 999999) {
+L: for my $i (123456 .. 999999) {
+    my $mul = $i;
     for my $j (2, 3, 4, 5, 6) {
-        my $mul = $i * $j;
+        $mul += $i;
         for my $check (split //, $i) {
-            next LOOP1 unless $mul =~ /$check/;
+            next L unless $mul =~ /$check/;
         }
     }
-    print $i."\n";
+    print $i;
     last;
 }
