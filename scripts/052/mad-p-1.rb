@@ -28,4 +28,3 @@ def solve(n)
   end
 end
 
-$0 == __FILE__ and puts solve(11)
