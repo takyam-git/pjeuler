@@ -28,3 +28,4 @@ def solve(n)
   end
 end
 
+puts solve(10)
