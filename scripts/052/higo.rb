@@ -9,7 +9,6 @@ def compare(org = Array, comp)
 end
 
 while n += 1 do
-  bits = Array.new
   bits = n.to_s.split('').uniq.sort.to_a
 
   compare(bits, 2 * n) and 
