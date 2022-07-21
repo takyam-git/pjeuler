@@ -131,7 +131,7 @@ GEM
       less-rails (~> 2.2.3)
       railties (>= 3.1)
       therubyracer (~> 0.10.2)
-    tzinfo (0.3.33)
+    tzinfo (0.3.61)
     uglifier (1.2.7)
       execjs (>= 0.3.0)
       multi_json (~> 1.3)
